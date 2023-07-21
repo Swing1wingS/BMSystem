@@ -28,7 +28,7 @@ public interface BookDao {
     @Select("select * from book where b_isbn=#{b_Isbn} limit (#{page}-1)*#{pageSize}, #{pageSize}")
     List<Book> findBookByIsbn(String b_Isbn, Integer page, Integer pageSize);
 
-    @Select("select book.*, BR_U_ID, BR_BORROW_DATE, BR_RETURN_DATE " +
+    @Select("select book.*, BR_U_ID, BR_BORROW_DATE, BR_EXPECT_RETURN_DATE, BR_RETURN_DATE " +
             "from book, borrow_record " +
             "where b_id=br_b_id and BR_U_ID=#{u_Id} " +
             "limit (#{page}-1)*#{pageSize}, #{pageSize}")

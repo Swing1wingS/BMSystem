@@ -23,5 +23,6 @@ public class BookBorrowRecord {
     private String b_Description;
     private String br_U_Id;
     private Date br_Borrow_Date;
+    private Date br_Expect_Return_Date;
     private Date br_Return_Date;
 }

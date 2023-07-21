@@ -15,6 +15,7 @@ public class BorrowRecord {
     private String br_U_Id;
     private String br_B_Id;
     private Date br_Borrow_Date;
+    private Date br_Expect_Return_Date;
     private Date br_Return_Date;
 
     @Override
@@ -23,6 +24,7 @@ public class BorrowRecord {
                 "br_U_Id='" + br_U_Id + '\'' +
                 ", br_B_Id='" + br_B_Id + '\'' +
                 ", br_Borrow_Date=" + br_Borrow_Date +
+                ", br_Expect_Return_Date=" + br_Expect_Return_Date +
                 ", br_Return_Date=" + br_Return_Date +
                 '}';
     }

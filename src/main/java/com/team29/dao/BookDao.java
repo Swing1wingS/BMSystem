@@ -14,7 +14,7 @@ public interface BookDao {
     List<Book> findAllBooks(Integer page, Integer pageSize);
 
     @Select("select * from book where b_id=#{b_Id}")
-    List<Book> findBookById(String b_Id);
+    Book findBookById(String b_Id);
 
     @Select("select * from book where b_name=#{b_Name} limit (#{page}-1)*#{pageSize}, #{pageSize}")
     List<Book> findBookByName(String b_Name, Integer page, Integer pageSize);

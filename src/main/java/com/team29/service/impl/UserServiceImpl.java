@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserById(String id) {
-        return userDao.findUserById(id, 0, 10);
+        return userDao.findUserById(id);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUserInfo(User user) {
 
-        User newUser = userDao.findUserById(user.getU_Id(), 0, 10);
+        User newUser = userDao.findUserById(user.getU_Id());
         // log.info(newUser.toString());
         try {
             // 通过getDeclaredFields()方法获取对象类中的所有属性（含私有）

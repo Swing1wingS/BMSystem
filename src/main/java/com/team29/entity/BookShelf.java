@@ -1,24 +1,16 @@
 package com.team29.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookShelf {
     private String bs_Id;
     private String bs_BookCategory;
-
-    public String getBs_Id() {
-        return bs_Id;
-    }
-
-    public void setBs_Id(String bs_Id) {
-        this.bs_Id = bs_Id;
-    }
-
-    public String getBs_BookCategory() {
-        return bs_BookCategory;
-    }
-
-    public void setBs_BookCategory(String bs_BookCategory) {
-        this.bs_BookCategory = bs_BookCategory;
-    }
 
     @Override
     public String toString() {

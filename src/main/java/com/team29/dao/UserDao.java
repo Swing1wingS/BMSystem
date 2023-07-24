@@ -24,8 +24,9 @@ public interface UserDao {
             "u_email=#{u_Email}, u_password=#{u_Password} where u_id=#{u_Id}")
     void updateUser(User user);
 
-    @Delete("delete from book where u_id=#{u_Id}")
+    @Delete("delete from user where u_id=#{u_Id}")
     void deleteUser(String u_Id);
 
-
+    @Select("select u_password from user where u_id=#{u_Id}")
+    void findPassword(String u_Id);
 }

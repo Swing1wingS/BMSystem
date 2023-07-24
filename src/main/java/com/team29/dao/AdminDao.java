@@ -13,8 +13,11 @@ public interface AdminDao {
     @Select("select * from admin")
     List<Admin> findAllAdmin();
 
-    @Select("select password from admin where a_id=#{a_Id}")
+    @Select("select a_password from admin where a_id=#{a_Id}")
     String findPassword(String a_Id);
+
+    @Select("select * from ADMIN where a_id=#{id}")
+    Admin findAdminById(String id);
 
     @Update("update admin set a_name=#{a_Name}, a_password=#{a_Password} where a_id=#{a_Id}")
     void updateAdmin(Admin admin);

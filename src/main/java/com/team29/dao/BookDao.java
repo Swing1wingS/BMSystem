@@ -10,29 +10,29 @@ import java.util.List;
 @Mapper
 public interface BookDao {
 
-    @Select("select * from book limit (#{page}-1)*#{pageSize}, #{pageSize}")
-    List<Book> findAllBooks(Integer page, Integer pageSize);
+    @Select("select * from book limit #{start}, #{offset}")
+    List<Book> findAllBooks(Integer start, Integer offset);
 
     @Select("select * from book where b_id=#{b_Id}")
     Book findBookById(String b_Id);
 
-    @Select("select * from book where b_name=#{b_Name} limit (#{page}-1)*#{pageSize}, #{pageSize}")
-    List<Book> findBookByName(String b_Name, Integer page, Integer pageSize);
+    @Select("select * from book where b_name=#{b_Name} limit #{start}, #{offset}")
+    List<Book> findBookByName(String b_Name, Integer start, Integer offset);
 
-    @Select("select * from book where b_press=#{b_Press} limit (#{page}-1)*#{pageSize}, #{pageSize}")
-    List<Book> findBookByPress(String b_Press, Integer page, Integer pageSize);
+    @Select("select * from book where b_press=#{b_Press} limit #{start}, #{offset}")
+    List<Book> findBookByPress(String b_Press, Integer start, Integer offset);
 
-    @Select("select * from book where b_author=#{b_Author} limit (#{page}-1)*#{pageSize}, #{pageSize}")
-    List<Book> findBookByAuthor(String b_Author, Integer page, Integer pageSize);
+    @Select("select * from book where b_author=#{b_Author} limit #{start}, #{offset}")
+    List<Book> findBookByAuthor(String b_Author, Integer start, Integer offset);
 
-    @Select("select * from book where b_isbn=#{b_Isbn} limit (#{page}-1)*#{pageSize}, #{pageSize}")
-    List<Book> findBookByIsbn(String b_Isbn, Integer page, Integer pageSize);
+    @Select("select * from book where b_isbn=#{b_Isbn} limit #{start}, #{offset}")
+    List<Book> findBookByIsbn(String b_Isbn, Integer start, Integer offset);
 
     @Select("select book.*, BR_U_ID, BR_BORROW_DATE, BR_EXPECT_RETURN_DATE, BR_RETURN_DATE " +
             "from book, borrow_record " +
             "where b_id=br_b_id and BR_U_ID=#{u_Id} " +
-            "limit (#{page}-1)*#{pageSize}, #{pageSize}")
-    List<BookBorrowRecord> findBookByUser(String u_Id, Integer page, Integer pageSize);
+            "limit #{start}, #{offset}")
+    List<BookBorrowRecord> findBookByUser(String u_Id, Integer start, Integer offset);
 
     @Insert("insert into book " +
             "values(#{b_Id}, #{b_Name}, #{b_Author}, #{b_Press}, #{b_Pub_Year}, #{b_Total_Collection}," +

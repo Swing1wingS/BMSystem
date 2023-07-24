@@ -14,7 +14,7 @@ import java.util.Random;
 @Slf4j
 @RestController
 public class UserController {
-    Random r = new Random();
+
     @Autowired
     private UserService userService;
 
@@ -25,20 +25,11 @@ public class UserController {
     @PostMapping("/enroll")
     public Result addUser(@RequestBody EnrollForm enrollForm)
     {
-        User user = new User();
-        int uid=r.nextInt(999)+1;
-        user.setU_Id("U"+uid);
-        user.setU_Name(enrollForm.getName());
-        user.setU_Gender(enrollForm.getGender());
-        user.setU_Phone(enrollForm.getPhone());
-        user.setU_Email(enrollForm.getEmail());
-        user.setU_Password(enrollForm.getPassword());
         //调用service新增用户
-        userService.addUser(user);
-        //System.out.println(enrollForm.getEmail());
-        //System.out.println(enrollForm.getPhone());
+        userService.addUser(enrollForm);
         return Result.success();
     }
+
     /*
      * 1.2 查询用户
      */
@@ -47,8 +38,9 @@ public class UserController {
     {
         log.info("根据id查询员工信息,id: {}",u_Id);
         User user=userService.findUserById(u_Id);
-        return user!=null?Result.success(user):Result.fail("没有该用户");
+        return user != null ? Result.success(user) : Result.fail("没有该用户");
     }
+
     /*
      * 1.3  修改用户信息
      * 1.13 管理员修改用户
@@ -61,24 +53,15 @@ public class UserController {
         //如果没有该id的用户好像也会返回success
         return Result.success();
     }
+
     /*
      * 1.12 管理员添加用户
      */
     @PostMapping("/add_user")
     public Result adminAddUser(@RequestBody EnrollForm enrollForm)
     {
-        User user = new User();
-        int uid=r.nextInt(999)+1;
-        user.setU_Id("U"+uid);
-        user.setU_Name(enrollForm.getName());
-        user.setU_Gender(enrollForm.getGender());
-        user.setU_Phone(enrollForm.getPhone());
-        user.setU_Email(enrollForm.getEmail());
-        user.setU_Password(enrollForm.getPassword());
         //调用service新增用户
-        userService.addUser(user);
-        System.out.println(enrollForm.getEmail());
-        System.out.println(enrollForm.getPhone());
+        userService.addUser(enrollForm);
         return Result.success();
     }
     /*

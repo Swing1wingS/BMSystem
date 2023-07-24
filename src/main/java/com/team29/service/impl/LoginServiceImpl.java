@@ -21,16 +21,16 @@ public class LoginServiceImpl implements LoginService {
     public Result login(LoginForm loginForm)
     {
         switch (loginForm.getType()) {
-            case 0 -> {
+            case 0 :
                 String userPassword = userDao.findPassword(loginForm.getId());
                 if (userPassword.equals(loginForm.getPassword())) return Result.success();
                 else return Result.fail("wrong password");
-            }
-            case 1 -> {
+
+            case 1 :
                 String adminPassword = adminDao.findPassword(loginForm.getId());
                 if (adminPassword.equals(loginForm.getPassword())) return Result.success();
                 else return Result.fail("wrong password");
-            }
+
         }
         return Result.fail("登录运行错误");
     }

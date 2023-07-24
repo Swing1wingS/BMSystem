@@ -19,6 +19,12 @@ public interface UserDao {
     @Select("select * from USER where u_id=#{id}")
     User findUserById(String id);
 
+    @Select("select * from USER where u_name=#{name}")
+    User findUserByName(String name);
+
+    @Select("select u_id from USER")
+    List<String> findAllUId();
+
     @Update("update user " +
             "set u_name=#{u_Name}, u_gender=#{u_Gender}, u_phone=#{u_Phone}, " +
             "u_email=#{u_Email}, u_password=#{u_Password} where u_id=#{u_Id}")

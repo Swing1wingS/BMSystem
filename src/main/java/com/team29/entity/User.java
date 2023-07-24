@@ -26,6 +26,15 @@ public class User {
         this.u_Password = user.u_Password;
     }
 
+    // 该构造函数没有设置u_Id的值
+    public User(EnrollForm enrollForm) {
+        this.setU_Name(enrollForm.getName());
+        this.setU_Gender(enrollForm.getGender());
+        this.setU_Phone(enrollForm.getPhone());
+        this.setU_Email(enrollForm.getEmail());
+        this.setU_Password(enrollForm.getPassword());
+    }
+
     @Override
     public String toString() {
         return "User{" +

@@ -1,6 +1,7 @@
 package com.team29.service.impl;
 
 import com.team29.dao.UserDao;
+import com.team29.entity.EnrollForm;
 import com.team29.entity.User;
 import com.team29.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @Service
@@ -23,8 +26,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(User user) {
-        userDao.addUser(user);
+    public String addUser(EnrollForm enrollForm) {
+        try {
+            if (userDao.findUserByName(enrollForm.getName()) != null) {
+                return "该用户名已存在。";
+            }
+
+            User user = new User(enrollForm);
+
+            Random random = new Random();
+            List<String> uIdList = userDao.findAllUId();
+            String uId = "U" + random.nextInt(999);
+
+            // 找到现有数据库中不存在的uId
+            while (uIdList.contains(uId))
+                uId = "U" + random.nextInt(999);
+
+            user.setU_Id(uId);
+            userDao.addUser(user);
+        } catch (Exception e) {
+            return e.toString();
+        }
+
+        return "success";
     }
 
     @Override

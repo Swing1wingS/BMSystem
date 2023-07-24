@@ -37,7 +37,7 @@ CREATE TABLE `admin`  (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `U_ID` varchar(14) CHARACTER SET utf16 COLLATE utf16_general_ci NOT NULL,
-  `U_NAME` varchar(30) CHARACTER SET utf16 COLLATE utf16_general_ci NOT NULL,
+  `U_NAME` varchar(30) CHARACTER SET utf16 COLLATE utf16_general_ci UNIQUE NOT NULL,
   `U_GENDER` varchar(2) CHARACTER SET utf16 COLLATE utf16_general_ci NOT NULL,
   `U_PHONE` varchar(11) CHARACTER SET utf16 COLLATE utf16_general_ci NULL DEFAULT NULL,
   `U_EMAIL` varchar(30) CHARACTER SET utf16 COLLATE utf16_general_ci NULL DEFAULT NULL,

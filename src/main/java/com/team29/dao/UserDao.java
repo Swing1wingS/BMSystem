@@ -28,5 +28,5 @@ public interface UserDao {
     void deleteUser(String u_Id);
 
     @Select("select u_password from user where u_id=#{u_Id}")
-    void findPassword(String u_Id);
+    String findPassword(String u_Id);
 }

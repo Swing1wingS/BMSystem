@@ -26,7 +26,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin`  (
   `A_ID` varchar(15) CHARACTER SET utf16 COLLATE utf16_general_ci NOT NULL,
-  `A_NAME` varchar(30) CHARACTER SET utf16 COLLATE utf16_general_ci NOT NULL,
+  `A_NAME` varchar(30) CHARACTER SET utf16 COLLATE utf16_general_ci UNIQUE NOT NULL,
   `A_PASSWORD` varchar(30) CHARACTER SET utf16 COLLATE utf16_general_ci NOT NULL,
   PRIMARY KEY (`A_ID`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf16 COLLATE = utf16_general_ci ROW_FORMAT = Dynamic;

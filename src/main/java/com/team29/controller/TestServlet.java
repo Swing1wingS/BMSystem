@@ -1,9 +1,10 @@
-package com.team29.servlet;
+package com.team29.controller;
 
 import com.team29.entity.*;
 import com.team29.service.BookService;
 import com.team29.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,24 @@ public class TestServlet {
 
 
         return Result.success();
+    }
+
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public Result test() {
+        List<Book> books = new ArrayList<>();
+        f(books);
+
+        return Result.success(books);
+    }
+
+    void f(List<Book> books) {
+        List<Book> BB = new ArrayList<>();
+        Book b2 = new Book();
+        BB.add(b2);
+        for (int i = 0; i < BB.size(); ++i) {
+            books.add(BB.get(i));
+        }
     }
 
     @RequestMapping(value = "/testPost", method = RequestMethod.POST)

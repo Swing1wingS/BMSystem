@@ -19,7 +19,7 @@ public class Book {
     private Integer b_Cur_Collection;
     private String b_Bs_Id;
     private String b_Isbn;
-    private double b_Price;
+    private Double b_Price;
     private String b_Description;
 
     @Override

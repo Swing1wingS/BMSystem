@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BorrowRecordRequest {
+public class BorrowRequest {
     String u_id;
     String b_id;
     Date time;

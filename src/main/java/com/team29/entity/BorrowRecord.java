@@ -1,5 +1,6 @@
 package com.team29.entity;
 
+import com.team29.utils.DateOperation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,14 @@ public class BorrowRecord {
     private Date br_Borrow_Date;
     private Date br_Expect_Return_Date;
     private Date br_Return_Date;
+
+    public BorrowRecord(BorrowRequest borrowRequest, Integer duration) {
+        br_U_Id = borrowRequest.getU_id();
+        br_B_Id = borrowRequest.getB_id();
+        br_Borrow_Date = borrowRequest.getTime();
+        br_Expect_Return_Date = DateOperation.plusDate(br_Borrow_Date, duration);
+        br_Return_Date = null;
+    }
 
     @Override
     public String toString() {

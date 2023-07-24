@@ -25,7 +25,6 @@ public class TestServlet {
     @RequestMapping(value = "/testGet", method = RequestMethod.GET)
     public Result testGet(@RequestParam("u_id") String u_Id) {
 
-        //List<BookBorrowRecord> borrowRecords = bookService.findAllBook(0, 10);
 
         return Result.success();
     }

@@ -2,8 +2,10 @@ package com.team29.service.impl;
 
 import com.team29.dao.AdminDao;
 import com.team29.dao.UserDao;
+import com.team29.entity.Admin;
 import com.team29.entity.LoginForm;
 import com.team29.entity.Result;
+import com.team29.entity.User;
 import com.team29.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +24,13 @@ public class LoginServiceImpl implements LoginService {
     {
         switch (loginForm.getType()) {
             case 0 :
-                String userPassword = userDao.findPassword(loginForm.getId());
-                if (userPassword.equals(loginForm.getPassword())) return Result.success();
+                User user = userDao.findUserByName(loginForm.getName());
+                if (user.getU_Password().equals(loginForm.getPassword())) return Result.success();
                 else return Result.fail("wrong password");
-
             case 1 :
-                String adminPassword = adminDao.findPassword(loginForm.getId());
-                if (adminPassword.equals(loginForm.getPassword())) return Result.success();
+                Admin admin = adminDao.findAdminByName(loginForm.getName());
+                if (admin.getA_Password().equals(loginForm.getPassword())) return Result.success();
                 else return Result.fail("wrong password");
-
         }
         return Result.fail("登录运行错误");
     }

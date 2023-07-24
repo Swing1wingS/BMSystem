@@ -17,13 +17,14 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
+
     /*
      * 1.15 登录功能
      */
     @PostMapping("/login")
     public Result login(@RequestBody LoginForm loginform)
     {
-        log.info("信息: {}",loginform.getId());
+        log.info("信息: {}", loginform.getName());
         Result result = loginService.login(loginform);
         return result;
     }

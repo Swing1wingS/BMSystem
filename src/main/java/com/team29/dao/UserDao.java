@@ -32,7 +32,4 @@ public interface UserDao {
 
     @Delete("delete from user where u_id=#{u_Id}")
     void deleteUser(String u_Id);
-
-    @Select("select u_password from user where u_id=#{u_Id}")
-    String findPassword(String u_Id);
 }

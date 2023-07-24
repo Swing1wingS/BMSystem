@@ -19,6 +19,9 @@ public interface AdminDao {
     @Select("select * from ADMIN where a_id=#{id}")
     Admin findAdminById(String id);
 
+    @Select("select * from admin where a_name=#{name}")
+    Admin findAdminByName(String name);
+
     @Update("update admin set a_name=#{a_Name}, a_password=#{a_Password} where a_id=#{a_Id}")
     void updateAdmin(Admin admin);
 

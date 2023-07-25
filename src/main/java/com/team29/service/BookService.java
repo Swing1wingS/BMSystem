@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookService {
 
-    String findBook(String key, String value, Integer page, Integer pageSize, List<Book> bookList);
+    String findBook(String key, String value, Integer page, Integer pageSize, List<Book> bookList, Integer[] amount);
 
     String addBook(Book book);
 
@@ -20,5 +20,5 @@ public interface BookService {
 
     String renewBook(RenewRequest renewRequest);
 
-    String findBookByUser(String uId, Integer page, Integer pageSize, List<BookBorrowRecord> bookBorrowRecordList);
+    String findBookByUser(String uId, Integer page, Integer pageSize, List<BookBorrowRecord> bookBorrowRecordList, Integer[] amount);
 }

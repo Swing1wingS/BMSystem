@@ -33,19 +33,14 @@ public class TestServlet {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public Result test() {
-        List<Book> books = new ArrayList<>();
-        f(books);
+        Integer a = 0;
+        f(a);
 
-        return Result.success(books);
+        return Result.success(a);
     }
 
-    void f(List<Book> books) {
-        List<Book> BB = new ArrayList<>();
-        Book b2 = new Book();
-        BB.add(b2);
-        for (int i = 0; i < BB.size(); ++i) {
-            books.add(BB.get(i));
-        }
+    void f(Integer x) {
+        x = 1;
     }
 
     @RequestMapping(value = "/testPost", method = RequestMethod.POST)

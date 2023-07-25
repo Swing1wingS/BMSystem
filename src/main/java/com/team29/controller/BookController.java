@@ -23,8 +23,10 @@ public class BookController {
                            @RequestParam("page") Integer page,
                            @RequestParam("pageSize") Integer pageSize) {
         List<Book> bookList = new ArrayList<>();
-        String msg = bookService.findBook(key, value, page, pageSize, bookList);
-        return msg == "success" ? Result.success(bookList) : Result.fail(msg);
+        Integer[] amount = {0};
+        String msg = bookService.findBook(key, value, page, pageSize, bookList, amount);
+        BookResponse bookResponse = new BookResponse(amount[0], bookList);
+        return msg == "success" ? Result.success(bookResponse) : Result.fail(msg);
     }
 
     /* 录入图书 */
@@ -75,7 +77,9 @@ public class BookController {
                                   @RequestParam("page") Integer page,
                                   @RequestParam("pageSize") Integer pageSize) {
         List<BookBorrowRecord> bookBorrowRecordList = new ArrayList<>();
-        String msg = bookService.findBookByUser(u_Id, page, pageSize, bookBorrowRecordList);
-        return msg == "success" ? Result.success(bookBorrowRecordList) : Result.fail(msg);
+        Integer[] amount = {0};
+        String msg = bookService.findBookByUser(u_Id, page, pageSize, bookBorrowRecordList, amount);
+        BorrowRecordResponse borrowRecordResponse = new BorrowRecordResponse(amount[0], bookBorrowRecordList);
+        return msg == "success" ? Result.success(borrowRecordResponse) : Result.fail(msg);
     }
 }

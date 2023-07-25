@@ -25,10 +25,16 @@ public class LoginServiceImpl implements LoginService {
         switch (loginForm.getType()) {
             case 0 :
                 User user = userDao.findUserByName(loginForm.getName());
+                if (user == null) {
+                    return Result.fail("该用户名称不存在");
+                }
                 if (user.getU_Password().equals(loginForm.getPassword())) return Result.success();
                 else return Result.fail("wrong password");
             case 1 :
                 Admin admin = adminDao.findAdminByName(loginForm.getName());
+                if (admin == null) {
+                    return Result.fail("该管理员名称不存在");
+                }
                 if (admin.getA_Password().equals(loginForm.getPassword())) return Result.success();
                 else return Result.fail("wrong password");
         }

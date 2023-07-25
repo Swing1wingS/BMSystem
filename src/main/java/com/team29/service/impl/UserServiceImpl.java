@@ -85,5 +85,18 @@ public class UserServiceImpl implements UserService {
         userDao.deleteUser(id);
     }
 
+    @Override
+    public String findAllUser(Integer page, Integer pageSize, List<User> userList, Integer[] amount) {
+        try {
+            List<User> users = userDao.findAllUser((page - 1) * pageSize, pageSize);
+            for(int i = 0; i < users.size(); ++i)
+                userList.add(users.get(i));
+            amount[0] = userDao.findNumberOfAllUser();
+        } catch (Exception e) {
+            return e.toString();
+        }
+        return "success";
+    }
+
 
 }

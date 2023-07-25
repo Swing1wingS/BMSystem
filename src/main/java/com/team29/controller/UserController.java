@@ -3,12 +3,16 @@ package com.team29.controller;
 import com.team29.entity.EnrollForm;
 import com.team29.entity.Result;
 import com.team29.entity.User;
+import com.team29.entity.UserResponse;
 import com.team29.service.UserService;
 import com.team29.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Slf4j
@@ -73,5 +77,18 @@ public class UserController {
         log.info("根据id查询员工信息,id: {}",u_Id);
         userService.deleteUser(u_Id);
         return Result.success();
+    }
+
+    /*
+     * 1.16 查询所有用户信息
+     */
+    @GetMapping("/users")
+    public Result findAllUsers(@RequestParam("page") Integer page, @RequestParam("pageSize") Integer pageSize)
+    {
+        List<User> userList = new ArrayList<>();
+        Integer amount[] = {0};
+        String msg = userService.findAllUser(page, pageSize, userList, amount);
+        UserResponse userResponse = new UserResponse(amount[0], userList);
+        return msg == "success" ? Result.success(userResponse) : Result.fail(msg);
     }
 }

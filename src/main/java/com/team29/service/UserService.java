@@ -1,6 +1,5 @@
 package com.team29.service;
 
-import com.team29.entity.BookBorrowRecord;
 import com.team29.entity.EnrollForm;
 import com.team29.entity.User;
 
@@ -16,4 +15,5 @@ public interface UserService {
 
     void deleteUser(String id);
 
+    String findAllUser(Integer page, Integer pageSize, List<User> userList, Integer[] amount);
 }

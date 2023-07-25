@@ -16,6 +16,9 @@ public interface UserDao {
     @Select("select * from USER limit #{start}, #{offset}")
     List<User> findAllUser(Integer start, Integer offset);
 
+    @Select("select count(*) from user")
+    Integer findNumberOfAllUser();
+
     @Select("select * from USER where u_id=#{id}")
     User findUserById(String id);
 

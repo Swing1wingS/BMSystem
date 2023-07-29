@@ -29,8 +29,7 @@ public class BookServiceImpl implements BookService {
         switch (key){
             case "all":
                 books = bookDao.findAllBooks((page - 1) * pageSize, pageSize);
-                for(int i = 0; i < books.size(); ++i)
-                    bookList.add(books.get(i));
+                bookList.addAll(books);
                 amount[0] = bookDao.findNumberOfAllBooks();
                 break;
             case "id":
@@ -40,26 +39,22 @@ public class BookServiceImpl implements BookService {
                 break;
             case "name":
                 books = bookDao.findBookByName(value, (page - 1) * pageSize, pageSize);
-                for(int i = 0; i < books.size(); ++i)
-                    bookList.add(books.get(i));
+                bookList.addAll(books);
                 amount[0] = bookDao.findNumberOfBookByName(value);
                 break;
             case "author":
                 books = bookDao.findBookByAuthor(value, (page - 1) * pageSize, pageSize);
-                for(int i = 0; i < books.size(); ++i)
-                    bookList.add(books.get(i));
+                bookList.addAll(books);
                 amount[0] = bookDao.findNumberOfBookByAuthor(value);
                 break;
             case "press":
                 books = bookDao.findBookByPress(value, (page - 1) * pageSize, pageSize);
-                for(int i = 0; i < books.size(); ++i)
-                    bookList.add(books.get(i));
+                bookList.addAll(books);
                 amount[0] = bookDao.findNumberOfBookByPress(value);
                 break;
             case "ISBN":
                 books = bookDao.findBookByIsbn(value, (page - 1) * pageSize, pageSize);
-                for(int i = 0; i < books.size(); ++i)
-                    bookList.add(books.get(i));
+                bookList.addAll(books);
                 amount[0] = bookDao.findNumberOfBookByIsbn(value);
                 break;
             default:
@@ -171,8 +166,7 @@ public class BookServiceImpl implements BookService {
     public String findBookByUser(String uId, Integer page, Integer pageSize, List<BookBorrowRecord> bookBorrowRecordList, Integer[] amount) {
         try {
             List<BookBorrowRecord> bookBorrowRecords = bookDao.findBookByUser(uId, (page - 1) * pageSize, pageSize);
-            for(int i = 0; i < bookBorrowRecords.size(); ++i)
-                bookBorrowRecordList.add(bookBorrowRecords.get(i));
+            bookBorrowRecordList.addAll(bookBorrowRecords);
             amount[0] = bookDao.findNumberOfBookByUser(uId);
         } catch (Exception e) {
             return e.toString();

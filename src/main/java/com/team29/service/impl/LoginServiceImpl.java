@@ -1,6 +1,5 @@
 package com.team29.service.impl;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.team29.dao.AdminDao;
 import com.team29.dao.UserDao;
 import com.team29.entity.*;

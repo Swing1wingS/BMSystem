@@ -1,9 +1,7 @@
 package com.team29.service.impl;
 
 import com.team29.dao.AdminDao;
-import com.team29.dao.UserDao;
 import com.team29.entity.Admin;
-import com.team29.entity.User;
 import com.team29.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

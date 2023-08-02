@@ -2,9 +2,11 @@ package com.team29.controller;
 
 import com.team29.entity.*;
 import com.team29.service.BookService;
+import com.team29.utils.AliOSSUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +33,22 @@ public class BookController {
 
     /* 录入图书 */
     @RequestMapping(value = "/add_book", method = RequestMethod.POST)
-    public Result addBook(@RequestBody Book book) {
+    public Result addBook(@RequestParam String b_Id,
+                          @RequestParam String b_Name,
+                          @RequestParam String b_Author,
+                          @RequestParam String b_Press,
+                          @RequestParam Integer b_Pub_Year,
+                          @RequestParam Integer b_Total_Collection,
+                          @RequestParam Integer b_Cur_Collection,
+                          @RequestParam String b_Bs_Id,
+                          @RequestParam String b_Isbn,
+                          @RequestParam Double b_Price,
+                          @RequestParam String b_Description,
+                          @RequestParam MultipartFile image) {
+        Book book = new Book(b_Id, b_Name, b_Author, b_Press, b_Pub_Year, b_Total_Collection, b_Cur_Collection, b_Bs_Id, b_Isbn, b_Price, b_Description);
         String msg = bookService.addBook(book);
-        return msg == "success" ? Result.success() : Result.fail(msg);
+        String url = AliOSSUtils.uploadBookImage(image, b_Id);
+        return msg == "success" && url != "fail" ? Result.success(url) : Result.fail(msg);
     }
 
     /* 图书修改 */
